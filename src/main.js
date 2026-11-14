@@ -11,11 +11,9 @@ import { onAuth, signOutUser } from "./auth.js";
 import { isAdmin } from "./firebase.js";
 import { openAuthModal } from "./authModal.js";
 import { registerSW } from "virtual:pwa-register";
-import showcaseOrrery from "./assets/showcase/orrery.jpg";
 import showcaseMirrors from "./assets/showcase/mirrors.jpg";
 import showcaseCell from "./assets/showcase/cell.jpg";
 import showcaseIonicbond from "./assets/showcase/ionicbond.jpg";
-import showcaseGalaxies from "./assets/showcase/galaxies.jpg";
 // Firestore (sync + submissions) is the heaviest slice of the Firebase SDK,
 // so it's only fetched once someone actually signs in or opens those pages.
 
@@ -23,7 +21,8 @@ import showcaseGalaxies from "./assets/showcase/galaxies.jpg";
 // at all — see style.css's prefers-color-scheme rule); an explicit choice
 // here overrides that via data-theme, independent of the OS setting. Applied
 // before app.innerHTML below, so there's no flash of the wrong theme.
-const THEME_KEY = "3ducation.theme";
+const THEME_KEY = "sparklab.theme";
+const LEGACY_THEME_KEY = "3ducation.theme";
 const THEME_ORDER = ["system", "light", "dark"];
 const THEME_META = {
   system: { icon: "🌗", label: "Theme: Auto (follows your device)" },
@@ -32,7 +31,7 @@ const THEME_META = {
 };
 let theme = "system";
 try {
-  theme = localStorage.getItem(THEME_KEY) || "system";
+  theme = localStorage.getItem(THEME_KEY) || localStorage.getItem(LEGACY_THEME_KEY) || "system";
 } catch {
   /* ignore */
 }
@@ -71,13 +70,13 @@ const app = document.getElementById("app");
 
 app.innerHTML = `
   <header class="topbar">
-    <a class="brand" href="#/" aria-label="3ducation home">
+    <a class="brand" href="#/" aria-label="SparkLab home">
       <svg class="brand-mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
         <circle cx="13" cy="13" r="3.6" fill="currentColor"/>
         <ellipse cx="13" cy="13" rx="12" ry="5.2" stroke="currentColor" stroke-width="1.4"/>
         <ellipse cx="13" cy="13" rx="12" ry="5.2" stroke="currentColor" stroke-width="1.4" transform="rotate(60 13 13)"/>
       </svg>
-      <span class="brand-word"><span class="d3">3d</span>ucation</span>
+      <span class="brand-word"><span class="d3">Spark</span>Lab</span>
     </a>
     <div class="topbar-right">
       <nav class="crumbs" id="crumbs" aria-live="polite">Workshop</nav>
@@ -89,11 +88,10 @@ app.innerHTML = `
   <main id="main" class="view" tabindex="-1"></main>
 
   <footer class="site-foot">
-    <p>Free and open source — <a href="https://github.com/atbt-ops/3ducation">github.com/atbt-ops/3ducation</a>.
-    Signed-in progress syncs across devices; signed-out progress stays in this browser.
-    <a href="#/community">Browse community instruments</a> or
-    <a href="#/submit">submit your own</a> — no coding required.</p>
-    <button class="linklike" id="resetProgress" type="button">Reset my progress</button>
+    <p>
+      <strong>SparkLab</strong> — Interactive 3D STEM lab empowering students across Physics, Chemistry, Biology, and Mathematics. Built to bring hands-on science experiments to every classroom, even without physical lab equipment or an active internet connection.
+    </p>
+    <button class="linklike" id="resetProgress" type="button">Reset progress</button>
   </footer>
 `;
 
@@ -267,7 +265,7 @@ requestAnimationFrame(loop);
 /* ---------------- home ---------------- */
 let homeBand = "All";
 try {
-  homeBand = localStorage.getItem("3ducation.band") || "All";
+  homeBand = localStorage.getItem("sparklab.band") || localStorage.getItem("3ducation.band") || "All";
 } catch {
   /* ignore */
 }
@@ -276,20 +274,16 @@ const SUBJECT_BLURB = {
   Physics: "Forces, energy, circuits, light and sound — push, drop, and short-circuit your way through it.",
   Chemistry: "Atoms, reactions, gases and the periodic table — 118 elements to explore.",
   Biology: "Cells, DNA, the heart, and how living things work and grow.",
-  "Earth Science": "Inside the planet, its plates, rocks, and the water cycle.",
   Math: "Numbers, shapes, graphs and calculus — geometry and algebra you can turn around.",
-  Astronomy: "Orbits, eclipses, moon phases, and how stars are born and die.",
 };
 
 // Real screenshots of the running app (captured from the actual 3D stage of
 // each instrument) — not mockups. A quick, honest preview of the variety
 // inside before a visitor commits to opening one.
 const SHOWCASE = [
-  { src: showcaseOrrery, caption: "Orrery — planets and orbits drawn to real relative sizes." },
   { src: showcaseMirrors, caption: "Concave & convex mirrors — drag the object and watch the ray diagram update." },
   { src: showcaseCell, caption: "Cell explorer — tap any organelle to read what it does." },
   { src: showcaseIonicbond, caption: "Ionic bonding — watch an electron jump from sodium to chlorine." },
-  { src: showcaseGalaxies, caption: "Galaxy types — spiral, elliptical and irregular, side by side." },
 ];
 
 /** A small, dependency-free carousel: one slide visible at a time, dot and
@@ -420,7 +414,7 @@ function wireBandRow(root, onChange) {
     if (!btn) return;
     homeBand = btn.dataset.band;
     try {
-      localStorage.setItem("3ducation.band", homeBand);
+      localStorage.setItem("sparklab.band", homeBand);
     } catch {
       /* ignore */
     }

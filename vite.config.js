@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// Deployed at https://atbt-ops.github.io/3ducation/
-const base = process.env.DEPLOY_BASE || "/3ducation/";
+// Deployed at https://atbt-ops.github.io/spark/
+const base = process.env.DEPLOY_BASE || "/spark/";
 
 export default defineConfig({
   base,
@@ -39,10 +39,10 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,svg,png,jpg,jpeg,woff2}"],
       },
       manifest: {
-        name: "3ducation — Science Lab",
-        short_name: "3ducation",
+        name: "SparkLab — Science Lab",
+        short_name: "SparkLab",
         description:
-          "A free, interactive 3D science lab: physics, chemistry, math and astronomy you can touch.",
+          "A free, interactive 3D science lab: physics, chemistry, biology and math you can touch.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",

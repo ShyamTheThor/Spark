@@ -1,11 +1,14 @@
 // Per-visitor progress, stored locally. No account, no server.
-const KEY = "3ducation.progress.v1";
+const KEY = "sparklab.progress.v1";
+const LEGACY_KEY = "3ducation.progress.v1";
 
 const listeners = new Set();
 
 function read() {
   try {
-    return JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+    return (
+      JSON.parse(localStorage.getItem(KEY) || localStorage.getItem(LEGACY_KEY) || "{}") || {}
+    );
   } catch {
     return {};
   }

@@ -1,7 +1,7 @@
-# 3ducation
+# SparkLab
 
-**A free, interactive 3D science lab for classes I–XII.** 90 hands-on instruments
-across physics, chemistry, biology, earth science, maths and space — each running
+**A free, interactive 3D science lab for classes I–XII.** 75 hands-on instruments
+across physics, chemistry, biology, and maths — each running
 on the real equations, each with a short lesson, guided experiments and a
 check-yourself quiz. Plus all 118 elements and a formula box that plots anything
 you type. Works offline; sign-in is optional and only used to sync your progress
@@ -9,16 +9,14 @@ and to submit new instruments. The home page shows one tile per subject — clic
 through to that subject's own page for its full instrument list — and everything
 can be filtered by school level (Primary / Middle / Secondary) or found by search.
 
-🔗 **Live:** https://atbt-ops.github.io/3ducation/
+🔗 **Live:** https://atbt-ops.github.io/spark/
 
 | Subject       | Instruments |
 | ------------- | ----------- |
 | **Physics**   | Pendulum · Projectile range · Mass on a spring · Ramp & friction · Newton's cradle · Levers & balance · Ohm's law loop · Series & parallel · Magnetic field · Magnetic compass · Electromagnet · Electromagnetic induction · Electric motor · Electric generator · Electric charges · Wave interference · Standing waves · Sound: pitch & loudness · Converging lens · Refraction · The human eye · Prism & dispersion · Why the sky is blue · Float or sink · Mercury barometer · Heat flow · Thermometer · Calorimeter · Periscope · Electroscope · Spring balance |
 | **Chemistry** | Molecule kit · States of matter · Atom builder · Gas laws · The pH scale · Reaction rate · Distillation · Balancing equations · Periodic table (118 elements) |
 | **Biology**   | Cell explorer · Compound microscope · DNA double helix · Photosynthesis · The heart · Energy pyramid · Punnett square · Stethoscope · Sphygmomanometer · Dialysis machine · Reflex hammer · Reaction time ruler |
-| **Earth Science** | The water cycle |
 | **Maths**     | Geometry set · Counting blocks · Reading the clock · Pan balance · Surface studio (`z = f(x,y)`) · Fraction wall · Times table · Unit circle · Clinometer · Pythagoras · Similar triangles · Line grapher · Mean/median/mode · Galton board · Dice sums · Slope of a curve |
-| **Space**     | Orrery · Moon phases · Seasons & the tilt |
 
 Most instruments ship a set of **guided experiments** — one click dials in a named
 setup and poses a question. The Surface studio uses a small safe expression engine
@@ -163,7 +161,7 @@ security boundary is `firestore.rules`, not the config's secrecy.
 
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push
 to `main`. Set **Settings → Pages → Source: GitHub Actions** once. The base path
-is `/3ducation/` (`vite.config.js`); override with `DEPLOY_BASE` for a custom domain.
+is `/spark/` (`vite.config.js`); override with `DEPLOY_BASE` for a custom domain.
 
 ## License
 
