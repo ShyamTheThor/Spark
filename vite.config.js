@@ -1,8 +1,7 @@
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// Deployed at https://atbt-ops.github.io/spark/
-const base = process.env.DEPLOY_BASE || "/spark/";
+const base = process.env.DEPLOY_BASE || "./";
 
 export default defineConfig({
   base,
